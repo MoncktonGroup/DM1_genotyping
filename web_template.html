@@ -1,0 +1,33 @@
+<head>
+  <script src="https://cdn.plot.ly/plotly-latest.min.js">
+  </script>
+</head>
+<body>
+  <table>
+    <tbody>
+      <tr>
+        <th> SampleID </th>
+        <th> Al1 </th>
+        <th> Al2 </th>
+        <th> Freq1 </th>
+        <th> Freq2 </th>
+      </tr>
+      <tr>
+        <td> {{sampleID}} </td>
+        <td> {{al1}} </td>
+        <td> {{al2}} </td>
+        <td> {{freq1}} </td>
+        <td> {{freq2}} </td>
+      </tr>
+    </tbody>
+  </table>
+  <div id="plot"></div>
+  <script>
+    var data = [{
+    x: {{x}},
+    y: {{y}},
+    type: 'bar'
+    }];
+    Plotly.newPlot('plot', data);
+  </script>
+</body>
