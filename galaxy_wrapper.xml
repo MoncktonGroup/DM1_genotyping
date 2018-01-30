@@ -5,7 +5,7 @@
     <param format="tabular" name="input" type="data" label="Source file"/>
   </inputs>
   <outputs>
-    <data format="tabular" name="output" label="${input.name} output" />
+    <data format="html" name="output" label="${input.name} output" />
   </outputs>
 
   <tests>
