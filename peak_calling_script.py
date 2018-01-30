@@ -16,16 +16,13 @@ y = []
 toolInput = sys.argv[1]
 toolOutput = sys.argv[2]
 toolWebsite = sys.argv[3]
-inName = sys.argv[4]
 
-with open(toolInput, 'rb') as csvfile:
+with open(sys.argv[1], 'rb') as csvfile:
     spamreader = csv.reader(csvfile, delimiter='\t')
     for i, row in enumerate(spamreader):
         if i != 0:
             x.append(int(row[0]))
             y.append(int(row[1]))
-
-csvfile.close()
 
 # you have to set this manually to weed out all the noise. Every bit of noise should be below it.
 threshold = 20
@@ -57,20 +54,20 @@ roundErr = [i[0] - int(round(i[0])) for i in gmm2.means_]
 # getting the coverage of each gaussian
 weights = gmm2.weights_
 
-sampleID = inName
+sampleID = toolOutput + ".html"
 
-#with open(toolOutput, "w") as f:
-#    print("sampleID", file=f, end="\t")
-#    print("Al1", file=f, end="\t")
-#    print("Al2", file=f, end="\t")
-#    print("frac1", file=f, end="\t")
-#    print("frac2", file=f, end="\t")
-#    print(file=f)
-#    print(sampleID, file=f, end="\t")
-#    print(means[0], file=f, end="\t")
-#    print(means[1], file=f, end="\t")
-#    print(weights[0], file=f, end="\t")
-#    print(weights[1], file=f, end="\t")
+with open(toolOutput, "w") as f:
+    print("sampleID", file=f, end="\t")
+    print("Al1", file=f, end="\t")
+    print("Al2", file=f, end="\t")
+    print("frac1", file=f, end="\t")
+    print("frac2", file=f, end="\t")
+    print(file=f)
+    print(sampleID, file=f, end="\t")
+    print(means[0], file=f, end="\t")
+    print(means[1], file=f, end="\t")
+    print(weights[0], file=f, end="\t")
+    print(weights[1], file=f, end="\t")
 
 template_dir = {
     "sampleID": sampleID,
@@ -84,6 +81,3 @@ template_dir = {
 with open(toolWebsite) as wt:
     with open(sampleID, "w") as wr:
         wr.write(pystache.render(wt.read(), template_dir))
-
-wt.close()
-wr.close()
