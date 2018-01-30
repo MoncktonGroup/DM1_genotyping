@@ -1,11 +1,11 @@
 
-<tool id="peak_calling_script" name="Find modes of bimodal PCR-like distribution" version="0.1.0">
-  <command interpreter="python"> peak_calling_script.py $input $output $__tool_directory__/web_template.html </command>
+<tool id="peak_calling_script.py" name="Find modes of bimodal PCR-like distribution" version="0.1.0">
+  <command interpreter="python"> adams_tool.py $input $output $__tool_directory__/web_template.html ${input.name} </command>
   <inputs>
     <param format="tabular" name="input" type="data" label="Source file"/>
   </inputs>
   <outputs>
-    <data format="tabular" name="output" />
+    <data format="html" name="output" label="${input.name} output" />
   </outputs>
 
   <tests>
